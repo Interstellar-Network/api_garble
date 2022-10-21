@@ -17,6 +17,14 @@
 // #![no_std]
 // https://github.com/substrate-developer-hub/substrate-module-template/blob/master/HOWTO.md#forgetting-cfg_attr-for-no_std
 #![cfg_attr(not(feature = "std"), no_std)]
+#![feature(alloc)]
+
+// Requires `alloc`.
+// TODO? #[cfg(feature = "alloc")]
+extern crate alloc;
+
+use alloc::string::String;
+use alloc::vec::Vec;
 
 pub use cxx;
 
