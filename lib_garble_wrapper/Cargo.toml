@@ -8,7 +8,7 @@ build = "build.rs"
 
 [dependencies]
 # requires >=1.0.80 cf https://github.com/dtolnay/cxx/issues/1065
-cxx = "1.0.80"
+cxx = { version = "1.0.80", default-features = false }
 
 [build-dependencies]
 cxx-build = "1.0"
