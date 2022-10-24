@@ -31,7 +31,7 @@ clap = { version = "4", features = ["derive", "env"] }
 # ipfs-api-backend-hyper = "0.3"
 ipfs-api-backend-hyper = { version = "0.5", features = [ "with-send-sync" , "with-builder" ] }
 
-lib-garble-wrapper = { path = "lib_garble_wrapper/" }
+lib-garble-wrapper = { path = "lib_garble_wrapper/", features = [ "alloc" ] }
 
 [build-dependencies]
 tonic-build = "0.8"
