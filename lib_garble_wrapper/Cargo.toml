@@ -10,6 +10,17 @@ build = "build.rs"
 # requires >=1.0.80 cf https://github.com/dtolnay/cxx/issues/1065
 cxx = { version = "1.0.80", default-features = false }
 
+# when used in SGX enclave
+# else: error: no global memory allocator found but one is required; link to std or add `#[global_allocator]` to a static item that implements the GlobalAlloc trait
+# Indeed defined in https://github.com/apache/incubator-teaclave-sgx-sdk/blob/v1.1.5/sgx_no_tstd/src/lib.rs
+# sgx_no_tstd = { optional = true, rev = "v1.1.5", git = "https://github.com/apache/teaclave-sgx-sdk.git"}
+# sgx_alloc = { optional = true, rev = "v1.1.5", git = "https://github.com/apache/teaclave-sgx-sdk.git"}
+
+# [target.'cfg(not(target_env = "sgx"))'.dependencies]
+# sgx_types = { git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+# sgx_tstd = { git = "https://github.com/apache/teaclave-sgx-sdk.git",  features = ["net"] }
+
+
 [build-dependencies]
 cxx-build = "1.0"
 cmake = "0.1"
@@ -27,8 +38,12 @@ crate-type = ["staticlib", "lib"]
 
 [features]
 # TODO(rust) no_std
-default = ['std']
+default = []
 std = [
     # 'sp-std/std',
 ]
 alloc = [ 'cxx/alloc' ]
+sgx = [
+	# "sgx_no_tstd",
+    # "sgx_alloc"
+]
